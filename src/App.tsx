@@ -6,8 +6,8 @@ import About from './components/About';
 import Benefits from './components/Benefits';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import WhatsAppButton from './components/WhatsAppButton';
 import { scrollToSection } from './utils/scrollToSection';
+import ChatBot from "./components/ChatBot";
 
 import ErrorBoundary from './components/ErrorBoundary';       // 👈 Error boundary por sección
 import GlobalErrorCatcher from './components/GlobalErrorCatcher'; // 👈 Catcher de errores globales
@@ -96,8 +96,9 @@ function App() {
         <Footer />
       </ErrorBoundary>
 
-      <ErrorBoundary label="WhatsAppButton">
-        <WhatsAppButton />
+      {/* 👇 Chatbot flotante en esquina */}
+      <ErrorBoundary label="ChatBot">
+        <ChatBot />
       </ErrorBoundary>
     </div>
   );
