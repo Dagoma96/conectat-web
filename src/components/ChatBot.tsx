@@ -50,7 +50,7 @@ const ChatBot = () => {
               width="370"
               height="540"
               title="ChatBot ConectaT"
-              className="rounded-xl shadow-2xl border border-gray-200"
+              className="w-[440px] md:w-[800px] h-[620px] max-w-[95vw] max-h-[85vh] rounded-xl shadow-2xl border border-gray-200 bg-white overflow-auto"
               style={{
                 maxWidth: '90vw',
                 maxHeight: '90vh',
