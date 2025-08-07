@@ -7,12 +7,10 @@ const ChatBot = () => {
   const [shouldRedirectToWhatsApp, setShouldRedirectToWhatsApp] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
-  // Abre/cierra el chatbot
   const toggleChatbot = () => {
     setIsOpen(!isOpen);
   };
 
-  // Escuchar mensaje desde el iframe para escalar a humano
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
       if (event.data === 'redirect_to_whatsapp') {
@@ -24,7 +22,6 @@ const ChatBot = () => {
     return () => window.removeEventListener('message', handleMessage);
   }, []);
 
-  // Redirige a WhatsApp si se solicita desde el bot
   useEffect(() => {
     if (shouldRedirectToWhatsApp) {
       window.open('https://wa.me/573043756405', '_blank');
@@ -47,15 +44,20 @@ const ChatBot = () => {
             <iframe
               ref={iframeRef}
               src="https://conectat-chatbot.vercel.app"
-              width="370"
-              height="540"
               title="ChatBot ConectaT"
-              className="w-[440px] md:w-[800px] h-[620px] max-w-[95vw] max-h-[85vh] rounded-xl shadow-2xl border border-gray-200 bg-white overflow-auto"
+              className="rounded-xl shadow-2xl border border-gray-200 bg-white"
               style={{
-                maxWidth: '90vw',
+                width: '420px',
+                minHeight: '80vh',
                 maxHeight: '90vh',
+                maxWidth: '90vw',
                 backgroundColor: '#ffffff',
+                overflow: 'hidden',
+                scrollbarWidth: 'none',
+                paddingTop: '8px',
+                borderTop: '1px solid transparent',
               }}
+              scrolling="no"
             ></iframe>
           </motion.div>
         )}
