@@ -91,7 +91,7 @@ function MainPage() {
             size: 60,
             dragAndDrop: true,
             iconColor: '#ffffff', // Color blanco para el icono
-            customIconSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg',
+            // Eliminamos customIconSrc para usar nuestro SVG personalizado
             autoWindowOpen: { autoOpen: true, openDelay: 2, autoOpenOnMobile: false }
           },
           tooltip: {
@@ -295,10 +295,21 @@ function MainPage() {
           box-shadow: 0 6px 20px rgba(30, 107, 99, 0.6) !important;
         }
         
-        /* ESTILOS PARA ASEGURAR QUE EL ÍCONO DEL BOTÓN SEA BLANCO */
-        .flowise-chatbot-button svg,
-        .flowise-chatbot-button img {
-          filter: brightness(0) invert(1) !important;
+        /* ESTILOS PARA REEMPLAZAR EL ÍCONO CON NUESTRO SVG DE ROBOT */
+        .flowise-chatbot-button svg {
+          display: none !important; /* Ocultamos el SVG original */
+        }
+        
+        /* Creamos nuestro propio ícono de robot */
+        .flowise-chatbot-button::before {
+          content: "";
+          display: block;
+          width: 30px;
+          height: 30px;
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-13.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5S12.33 7 11.5 7 10 6.33 10 5.5zm5 0c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5S17.33 7 16.5 7 15 6.33 15 5.5zm-7 5c0 1.66 1.34 3 3 3s3-1.34 3-3-1.34-3-3-3-3 1.34-3 3zm3 5c-2.76 0-5 2.24-5 5v1h10v-1c0-2.76-2.24-5-5-5z'/%3E%3C/svg%3E");
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
         }
         
         /* Estilos para el tooltip */
