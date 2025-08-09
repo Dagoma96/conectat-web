@@ -11,7 +11,6 @@ const FlowiseBot = () => {
       setScriptLoaded(true);
       return;
     }
-
     const script = document.createElement('script');
     script.id = 'flowise-chat-script';
     script.src = 'http://localhost:3000/api/v1/prediction/a68d34c9-80fe-4ccb-bdec-bef5d165d2de';
@@ -30,7 +29,6 @@ const FlowiseBot = () => {
   // Detectar cuando el chat se abre/cierra
   useEffect(() => {
     if (!scriptLoaded) return;
-
     const checkChatStatus = () => {
       const chatWindow = document.querySelector('[class*="chat-window"]');
       if (chatWindow) {
@@ -39,7 +37,6 @@ const FlowiseBot = () => {
         if (display !== 'none') setHasNewMessage(false);
       }
     };
-
     const observer = new MutationObserver(checkChatStatus);
     observer.observe(document.body, { childList: true, subtree: true });
     
@@ -115,19 +112,19 @@ const FlowiseBot = () => {
           e.currentTarget.style.boxShadow = '0 4px 15px rgba(0, 184, 148, 0.4)';
         }}
       >
-        {/* SVG del logo de mensajería con estilos en línea para forzar color blanco */}
+        {/* SVG del logo de mensajería con color blanco forzado */}
         <svg 
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 24 24" 
           style={{ 
             width: 30, 
             height: 30,
-            filter: 'brightness(0) invert(1)' // Filtro para convertir a blanco
+            filter: 'brightness(0) invert(1)' // Convierte cualquier color a blanco
           }}
         >
           <path 
             d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z" 
-            fill="white" // Forzar color blanco
+            fill="#ffffff" // Forzar color blanco con código hexadecimal
           />
         </svg>
       </button>
@@ -234,7 +231,22 @@ const FlowiseBot = () => {
             border-radius: 12px !important;
           }
           
-          /* Efectos para los mensajes */
+          /* Cambiar el fondo del título del chatbot al verde principal */
+          [class*="chat-header"] {
+            background-color: #00b894 !important;
+          }
+          
+          /* Cambiar el color del texto del título a blanco */
+          [class*="chat-title"] {
+            color: white !important;
+          }
+          
+          /* Cambiar el color del botón de cerrar chat */
+          [class*="close-button"] {
+            color: white !important;
+          }
+          
+          /* Efectos para los mensajes del bot */
           [class*="bot-message"] {
             background-color: #00b894 !important;
             color: white !important;
@@ -245,8 +257,9 @@ const FlowiseBot = () => {
             max-width: 80% !important;
           }
           
+          /* Efectos para los mensajes del usuario - ahora con el mismo verde que el título */
           [class*="user-message"] {
-            background-color: #00695c !important;
+            background-color: #00b894 !important;
             color: white !important;
             border-radius: 18px !important;
             animation: slideIn 0.3s ease-out !important;
@@ -270,13 +283,33 @@ const FlowiseBot = () => {
             box-shadow: 0 0 0 3px rgba(0, 184, 148, 0.2) !important;
           }
           
-          /* Efectos para el botón de enviar */
+          /* Efectos para el botón de enviar - ahora con el mismo verde que el título */
           [class*="send-button"] {
+            background-color: #00b894 !important;
+            color: white !important;
             transition: all 0.3s ease !important;
           }
           
           [class*="send-button"]:hover {
             transform: scale(1.1) !important;
+            background-color: #00a085 !important; /* Un tono ligeramente más oscuro para el hover */
+          }
+          
+          /* Cambiar color de los botones de sugerencia */
+          [class*="suggestion-button"] {
+            background-color: #00b894 !important;
+            color: white !important;
+            border: none !important;
+          }
+          
+          /* Cambiar color de los botones de sugerencia en hover */
+          [class*="suggestion-button"]:hover {
+            background-color: #00a085 !important;
+          }
+          
+          /* Cambiar color del texto "Powered by" */
+          [class*="powered-by"] {
+            color: #00b894 !important;
           }
           
           /* Animación para mensajes entrantes */
