@@ -1,5 +1,8 @@
+// src/App.tsx
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// @ts-ignore
+import { BubbleChat } from 'flowise-embed-react';
 
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -8,7 +11,6 @@ import About from './components/About';
 import Benefits from './components/Benefits';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-import ChatBot from './components/ChatBot';
 
 import ErrorBoundary from './components/ErrorBoundary';
 import GlobalErrorCatcher from './components/GlobalErrorCatcher';
@@ -55,6 +57,7 @@ function MainPage() {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Barra de progreso */}
       <div
         className="fixed top-0 left-0 h-1 bg-gradient-to-r from-teal-600 to-teal-700 z-[60] transition-all duration-200"
         style={{ width: `${scrollProgress}%` }}
@@ -92,9 +95,37 @@ function MainPage() {
         <Footer />
       </ErrorBoundary>
 
-      <ErrorBoundary label="ChatBot">
-        <ChatBot />
-      </ErrorBoundary>
+      {/* Flowise Chat integrado */}
+      <BubbleChat
+        chatflowid="a68d34c9-80fe-4ccb-bdec-bef5d165d2de"
+        apiHost="http://localhost:3000"
+        theme={{
+          button: {
+            backgroundColor: '#004d4d',
+            right: 20,
+            bottom: 20,
+            size: 60,
+            dragAndDrop: true,
+            iconColor: '#ffffff',
+            customIconSrc: 'https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg',
+            autoWindowOpen: { autoOpen: true, openDelay: 2, autoOpenOnMobile: false }
+          },
+          tooltip: {
+            showTooltip: true,
+            tooltipMessage: '¡Hola 👋!',
+            tooltipBackgroundColor: '#000000',
+            tooltipTextColor: '#ffffff',
+            tooltipFontSize: 16
+          },
+          chatWindow: {
+            title: 'Asistente de ConectaT',
+            welcomeMessage: '¡Hola! Soy Áron, tu asistente virtual de ConectaT. ¿En qué puedo ayudarte hoy?',
+            backgroundColor: '#ffffff',
+            height: 700,
+            width: 400
+          }
+        }}
+      />
     </div>
   );
 }
