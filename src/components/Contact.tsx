@@ -17,10 +17,10 @@ export default function Contact() {
 
     emailjs
       .sendForm(
-        'service_56ztlmx', // Reemplaza con tu Service ID
-        'template_tkwuobb', // Reemplaza con tu Template ID
+        'service_56ztlmx',
+        'template_tkwuobb',
         form.current,
-        'fzEM8s0Rj_GSbitBD' // Reemplaza con tu Public Key
+        'fzEM8s0Rj_GSbitBD'
       )
       .then(
         () => {
@@ -66,7 +66,7 @@ export default function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="flex flex-col justify-center space-y-5"
           >
             <div className="flex items-center space-x-4">
               <div className="bg-teal-100 p-3 rounded-full">
@@ -88,15 +88,6 @@ export default function Contact() {
               </div>
               <p className="text-gray-700">ConectaT09@outlook.com</p>
             </div>
-
-            <a
-              href="https://wa.me/573043756405"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block bg-green-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-600 transition"
-            >
-              Escríbenos por WhatsApp
-            </a>
           </motion.div>
 
           {/* Formulario */}
