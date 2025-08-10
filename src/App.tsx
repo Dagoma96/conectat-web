@@ -92,7 +92,7 @@ function MainPage() {
             dragAndDrop: true,
             iconColor: '#ffffff', // Color blanco para el icono
             // Usamos un SVG de robot con antenas (estilo moderno) codificado en base64
-            customIconSrc: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z'/%3E%3C/svg%3E",
+            customIconSrc: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect x='3' y='4' width='18' height='12' rx='2.5' fill='%23FFFFFF' stroke='%23000000' stroke-width='0.8'/%3E%3Ccircle cx='8' cy='9' r='1.25' fill='%23000000'/%3E%3Ccircle cx='16' cy='9' r='1.25' fill='%23000000'/%3E%3Crect x='9' y='13' width='6' height='1' rx='0.5' fill='%23000000'/%3E%3Cline x1='6.5' y1='4' x2='5' y2='1.8' stroke='%23FFFFFF' stroke-width='0.9' stroke-linecap='round'/%3E%3Ccircle cx='5' cy='1.45' r='0.85' fill='%23FFFFFF' stroke='%23000000' stroke-width='0.5'/%3E%3Cline x1='17.5' y1='4' x2='19' y2='1.8' stroke='%23FFFFFF' stroke-width='0.9' stroke-linecap='round'/%3E%3Ccircle cx='19' cy='1.45' r='0.85' fill='%23FFFFFF' stroke='%23000000' stroke-width='0.5'/%3E%3C/svg%3E",
             autoWindowOpen: { autoOpen: true, openDelay: 2, autoOpenOnMobile: false }
           },
           tooltip: {
