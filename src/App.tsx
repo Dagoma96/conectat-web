@@ -81,8 +81,8 @@ function MainPage() {
       
       {/* Flowise Chat integrado - VERSIÓN WEB */}
       <BubbleChat
-        chatflowid="b7b475eb-3916-496c-b596-ded330f20326" // ID del chatbot en Flowise Cloud
-        apiHost="https://cloud.flowiseai.com" // URL de Flowise Cloud
+        chatflowid="f2e31358-a05b-4441-b737-269d79cbd09f" // ID del chatbot en Flowise Cloud
+        apiHost="https://flowise-conectat.onrender.com" // URL de Flowise Cloud
         theme={{
           button: {
             backgroundColor: '#1E6B63', // Verde principal actualizado
@@ -92,7 +92,7 @@ function MainPage() {
             dragAndDrop: true,
             iconColor: '#ffffff', // Color blanco para el icono
             // Usamos un SVG de robot con antenas (estilo moderno) codificado en base64
-            customIconSrc: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v2h-2zm0 3h2v2h-2zm0 3h2v2h-2zm0 3h2v2h-2zm-4-9h2v2h-2zm0 3h2v2h-2zm0 3h2v2h-2zm0 3h2v2h-2zm8-9h2v2h-2zm0 3h2v2h-2zm0 3h2v2h-2zm0 3h2v2h-2z'/%3E%3C/svg%3E",
+            customIconSrc: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H6l-2 2V4h16v12z'/%3E%3C/svg%3E",
             autoWindowOpen: { autoOpen: true, openDelay: 2, autoOpenOnMobile: false }
           },
           tooltip: {
