@@ -81,8 +81,8 @@ function MainPage() {
       
       {/* Flowise Chat integrado - VERSIÓN WEB */}
       <BubbleChat
-        chatflowid="b7b475eb-3916-496c-b596-ded330f20326" // ID del chatbot en Flowise Cloud
-        apiHost="https://cloud.flowiseai.com" // URL de Flowise Cloud
+        chatflowid="3ff43936-4dc6-430d-b17d-9d5443c3fed1" // ID del chatbot en Flowise Cloud
+        apiHost="https://flowise-conectat.onrender.com" // URL de Flowise Cloud
         theme={{
           button: {
             backgroundColor: '#1E6B63', // Verde principal actualizado
