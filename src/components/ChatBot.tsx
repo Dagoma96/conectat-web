@@ -93,7 +93,7 @@ const ChatBot = () => {
         onClick={toggleChatbot}
         aria-label="Abrir chatbot"
         aria-expanded={isOpen}
-        className="w-20 h-20 md:w-20 md:h-20 bg-teal-600 text-white rounded-full shadow-xl flex items-center justify-center text-3xl
+        className="w-16 h-16 md:w-16 md:h-16 bg-teal-600 text-white rounded-full shadow-xl flex items-center justify-center text-2xl
                  focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300
                  transition pointer-events-auto relative
                  hover:bg-teal-700 hover:scale-110"
