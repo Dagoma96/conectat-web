@@ -74,7 +74,7 @@ const ChatBot = () => {
   ref={iframeRef}
   src="https://conectat-chatbot.vercel.app"
   title="ChatBot ConectaT"
-  className="rounded-xl shadow-2xl border border-gray-200 bg-white"
+  className="rounded-xl shadow-2xl border border-gray-200 bg-white block mx-auto md:mx-0 md:translate-x-0 translate-x-4"
   style={{
     width: "400px",
     height: "600px",
