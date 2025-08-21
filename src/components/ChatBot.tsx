@@ -71,20 +71,18 @@ const ChatBot = () => {
             className="relative z-50 mb-4"
           >
             <iframe
-              ref={iframeRef}
-              src="https://conectat-chatbot.vercel.app"
-              title="ChatBot ConectaT"
-              className="rounded-xl shadow-2xl border border-gray-200 bg-white"
-              style={{
-                width: "420px",
-                minHeight: "80vh",
-                maxHeight: "90vh",
-                maxWidth: "90vw", // en móviles se ajusta
-                backgroundColor: "#ffffff",
-                overflow: "hidden",
-              }}
-              scrolling="no"
-            ></iframe>
+  ref={iframeRef}
+  src="https://conectat-chatbot.vercel.app"
+  title="ChatBot ConectaT"
+  className="rounded-xl shadow-2xl border border-gray-200 bg-white"
+  style={{
+    width: "400px",
+    height: "600px",
+    backgroundColor: "#ffffff",
+    overflow: "hidden",
+  }}
+  scrolling="no"
+></iframe>
           </motion.div>
         )}
       </AnimatePresence>
