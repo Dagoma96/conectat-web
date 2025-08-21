@@ -1,33 +1,61 @@
-import { useState, useEffect, useRef } from 'react';
-import { FaRobot, FaWhatsapp } from 'react-icons/fa';
-import { motion, AnimatePresence } from 'framer-motion';
+import { useState, useEffect, useRef } from "react";
+import { FaRobot, FaWhatsapp } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
 
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [shouldRedirectToWhatsApp, setShouldRedirectToWhatsApp] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
   const toggleChatbot = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((prev) => !prev);
   };
 
+  // Detectar mensaje desde el iframe
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
-      if (event.data === 'redirect_to_whatsapp') {
+      if (event.data === "redirect_to_whatsapp") {
         setShouldRedirectToWhatsApp(true);
       }
     };
-
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
+    window.addEventListener("message", handleMessage);
+    return () => window.removeEventListener("message", handleMessage);
   }, []);
 
+  // Redirigir a WhatsApp
   useEffect(() => {
     if (shouldRedirectToWhatsApp) {
-      window.open('https://wa.me/573043756405', '_blank');
+      window.open("https://wa.me/573043756405", "_blank");
       setShouldRedirectToWhatsApp(false);
     }
   }, [shouldRedirectToWhatsApp]);
+
+  // Cerrar con tecla Escape
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // Cerrar si se hace clic fuera del chatbot
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
+        setIsOpen(false);
+      }
+    };
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isOpen]);
 
   return (
     <div className="fixed bottom-5 md:bottom-8 right-5 md:right-8 z-[120] flex flex-col items-end space-y-3">
@@ -35,10 +63,11 @@ const ChatBot = () => {
         {isOpen && (
           <motion.div
             key="chatbot"
+            ref={wrapperRef}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 30 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
             className="relative z-50 mb-4"
           >
             <iframe
@@ -47,15 +76,12 @@ const ChatBot = () => {
               title="ChatBot ConectaT"
               className="rounded-xl shadow-2xl border border-gray-200 bg-white"
               style={{
-                width: '420px',
-                minHeight: '80vh',
-                maxHeight: '90vh',
-                maxWidth: '90vw',
-                backgroundColor: '#ffffff',
-                overflow: 'hidden',
-                scrollbarWidth: 'none',
-                paddingTop: '8px',
-                borderTop: '1px solid transparent',
+                width: "420px",
+                minHeight: "80vh",
+                maxHeight: "90vh",
+                maxWidth: "90vw", // en móviles se ajusta
+                backgroundColor: "#ffffff",
+                overflow: "hidden",
               }}
               scrolling="no"
             ></iframe>
@@ -66,18 +92,19 @@ const ChatBot = () => {
       <motion.button
         onClick={toggleChatbot}
         aria-label="Abrir chatbot"
+        aria-expanded={isOpen}
         className="w-16 h-16 md:w-16 md:h-16 bg-teal-600 text-white rounded-full shadow-lg flex items-center justify-center text-2xl
                  focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300
                  transition pointer-events-auto relative
                  hover:bg-teal-700 hover:scale-105"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, ease: 'easeOut', delay: 0.3 }}
+        transition={{ duration: 0.4, ease: "easeOut", delay: 0.3 }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.96 }}
         style={{
-          paddingRight: 'env(safe-area-inset-right)',
-          paddingBottom: 'env(safe-area-inset-bottom)',
+          paddingRight: "env(safe-area-inset-right)",
+          paddingBottom: "env(safe-area-inset-bottom)",
         }}
       >
         {isOpen ? <FaWhatsapp /> : <FaRobot />}
