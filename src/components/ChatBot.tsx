@@ -5,12 +5,21 @@ import { motion, AnimatePresence } from "framer-motion";
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [shouldRedirectToWhatsApp, setShouldRedirectToWhatsApp] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
 
   const toggleChatbot = () => {
     setIsOpen((prev) => !prev);
   };
+
+  // Detectar si es móvil
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   // Detectar mensaje desde el iframe
   useEffect(() => {
@@ -42,20 +51,20 @@ const ChatBot = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  // Cerrar si se hace clic fuera del chatbot
+  // Cerrar si se hace clic fuera (solo en escritorio)
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
         setIsOpen(false);
       }
     };
-    if (isOpen) {
+    if (isOpen && !isMobile) {
       document.addEventListener("mousedown", handleClickOutside);
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
     }
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isOpen]);
+  }, [isOpen, isMobile]);
 
   return (
     <div className="fixed bottom-5 md:bottom-8 right-5 md:right-8 z-[120] flex flex-col items-end space-y-3">
@@ -68,7 +77,7 @@ const ChatBot = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 30 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="relative z-50 mb-4"
+            className={`relative z-50 ${isMobile ? "fixed inset-0" : "mb-4"}`}
           >
             <iframe
               ref={iframeRef}
@@ -76,10 +85,11 @@ const ChatBot = () => {
               title="ChatBot ConectaT"
               className="rounded-xl shadow-2xl border border-gray-200 bg-white"
               style={{
-                width: "420px",
-                minHeight: "80vh",
-                maxHeight: "90vh",
-                maxWidth: "90vw", // en móviles se ajusta
+                width: isMobile ? "100vw" : "420px",
+                height: isMobile ? "100vh" : "80vh",
+                maxHeight: isMobile ? "100vh" : "90vh",
+                maxWidth: isMobile ? "100vw" : "90vw",
+                borderRadius: isMobile ? "0px" : "12px",
                 backgroundColor: "#ffffff",
                 overflow: "hidden",
               }}
