@@ -72,14 +72,14 @@ const ChatBot = () => {
           >
             <iframe
               ref={iframeRef}
-              src="https://conectat-chatbot.vercel.app" // 👈 usar ruta embed del chatbot
+              src="https://conectat-chatbot.vercel.app"
               title="ChatBot ConectaT"
-              className="rounded-2xl shadow-2xl border border-gray-200 bg-white"
+              className="rounded-xl shadow-2xl border border-gray-200 bg-white"
               style={{
                 width: "420px",
                 minHeight: "80vh",
                 maxHeight: "90vh",
-                maxWidth: "90vw",
+                maxWidth: "90vw", // en móviles se ajusta
                 backgroundColor: "#ffffff",
                 overflow: "hidden",
               }}
@@ -93,15 +93,15 @@ const ChatBot = () => {
         onClick={toggleChatbot}
         aria-label="Abrir chatbot"
         aria-expanded={isOpen}
-        className="w-16 h-16 md:w-16 md:h-16 bg-teal-600 text-white rounded-full shadow-xl flex items-center justify-center text-2xl
+        className="w-16 h-16 md:w-16 md:h-16 bg-teal-600 text-white rounded-full shadow-lg flex items-center justify-center text-2xl
                  focus:outline-none focus-visible:ring-2 focus-visible:ring-teal-300
                  transition pointer-events-auto relative
-                 hover:bg-teal-700 hover:scale-110"
+                 hover:bg-teal-700 hover:scale-105"
         initial={{ opacity: 0, y: 16 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: "easeOut", delay: 0.3 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.96 }}
         style={{
           paddingRight: "env(safe-area-inset-right)",
           paddingBottom: "env(safe-area-inset-bottom)",
@@ -109,7 +109,7 @@ const ChatBot = () => {
       >
         {isOpen ? <FaWhatsapp /> : <FaRobot />}
         <span
-          className="absolute inset-0 -z-10 rounded-full animate-ping bg-teal-500 opacity-30"
+          className="absolute inset-0 -z-10 rounded-full animate-ping bg-teal-500 opacity-20"
           aria-hidden="true"
         />
       </motion.button>
